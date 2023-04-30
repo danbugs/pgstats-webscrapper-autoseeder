@@ -122,7 +122,6 @@ while True:
         average_win_rates[player] = avg_win_rate
     
     next_player_standing = get_curr_seeding(average_win_rates, False)
-    # Compare if the first 8 players are the same
     if player_standing == next_player_standing:
         break
     else:
