@@ -32,6 +32,7 @@ def is_seeding_stable(curr_players, prev_players, threshold):
     prev_seedings = [prev_dict[player] for player in curr_players]
     differences = [abs(curr_seedings[i] - prev_seedings[i]) for i in range(len(curr_seedings))]
     mad = sum(differences) / len(differences)
+    print("\n>>> Mean Absolute Difference: " + str(mad))
     return mad < threshold
 
 # Get command-line arg to decide whether to web-scrape
@@ -182,12 +183,14 @@ while True:
     # Calculate the average win rate for each player
     for player, win_rates in player_records.items():
         # Sum all the win rates for each player and divide by sum of weights (i.e., weighed average)
-        avg_win_rate = (sum(win_rates.values()) + len(win_rates)) / ( sum_of_weights[player])
+        avg_win_rate = (sum(win_rates.values())) / ( sum_of_weights[player])
+        # Sum avg_win_rate with overall_win_rate and divide by 2
+        avg_win_rate = (avg_win_rate + overall_win_rates[player]) / 2
         # Update the average win rate for the player
         average_win_rates[player] = avg_win_rate
     
     next_player_standing = get_curr_seeding(average_win_rates, False)
-    if is_seeding_stable(player_standing, next_player_standing, 1):
+    if is_seeding_stable(player_standing, next_player_standing, .5):
         break
     else:
         iteration += 1
