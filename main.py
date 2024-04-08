@@ -68,7 +68,7 @@ if scrape:
             By.CLASS_NAME,  'Search_textInput__2opNd')[1]
 
         # Read player names from file
-        with open('search.txt', 'r') as f:
+        with open('search.txt', 'r', encoding='utf-8') as f:
             players = [line.strip() for line in f]
 
         # Initialize dictionary to store win rates for each player
@@ -124,19 +124,19 @@ if scrape:
         average_win_rates[player_name] = avg_win_rate
 
     # write player records, average_win_rates, and overall_win_rates to file
-    with open('player_records.txt', 'w') as f:
+    with open('player_records.txt', 'w', encoding='utf-8') as f:
         f.write(str(player_records))
-    with open('average_win_rates.txt', 'w') as f:
+    with open('average_win_rates.txt', 'w', encoding='utf-8') as f:
         f.write(str(average_win_rates))
-    with open('overall_win_rates.txt', 'w') as f:
+    with open('overall_win_rates.txt', 'w', encoding='utf-8') as f:
         f.write(str(overall_win_rates))
 else:
     # read player records, average_win_rates, and overall_win_rates from file
-    with open('player_records.txt', 'r') as f:
+    with open('player_records.txt', 'r', encoding='utf-8') as f:
         player_records = eval(f.read())
-    with open('average_win_rates.txt', 'r') as f:
+    with open('average_win_rates.txt', 'r', encoding='utf-8') as f:
         average_win_rates = eval(f.read())
-    with open('overall_win_rates.txt', 'r') as f:
+    with open('overall_win_rates.txt', 'r', encoding='utf-8') as f:
         overall_win_rates = eval(f.read())
 
 iteration = 0
